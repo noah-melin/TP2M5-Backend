@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware # 1. Importer
+import random
 
 
 app = FastAPI()
@@ -29,4 +30,6 @@ def read_root():
 
 @app.get("/api/status")
 def get_api_status():
-    return {"srv01": "En Ligne", "cam01": "Éteinte"}
+    # Choisit aléatoirement le statut du serveur entre 'En Ligne' et 'Hors Ligne'
+    status_srv01 = random.choice(["En Ligne", "Hors Ligne"])
+    return {"srv01": status_srv01, "cam01": "Éteinte"}
